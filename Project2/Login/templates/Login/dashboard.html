@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craft Your Professional Story</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #2c3e50;
+            padding: 20px 0;
+        }
+
+        .portfolio-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 750px;
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transform: rotate(-45deg);
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .form-title h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input, 
+        .input-group textarea, 
+        .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid transparent;
+            border-bottom: 2px solid #e0e0e0;
+            outline: none;
+            background-color: #f9f9f9;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus, 
+        .input-group textarea:focus, 
+        .input-group select:focus {
+            border-bottom-color: #4ecdc4;
+            background-color: white;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #999;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label,
+        .input-group textarea:focus + label,
+        .input-group textarea:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: #4ecdc4;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .skill-tag .remove-skill {
+            cursor: pointer;
+            color: #ff6b6b;
+        }
+
+        .section-title {
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #4ecdc4;
+        }
+
+        .add-experience, .add-skill {
+            background: none;
+            border: 2px dashed #4ecdc4;
+            color: #4ecdc4;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-experience:hover, .add-skill:hover {
+            background-color: #4ecdc4;
+            color: white;
+        }
+
+        .experience-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .remove-experience {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ff6b6b;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+        }
+        .submit-btn2 {
+            display: block;
+            width: 30%;
+            padding: 10px;
+            margin-top: 2%;
+            margin-left: 35%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        }
+
+        .submit-btn2:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-container">
+        <div class="form-title">
+            <h1>Craft Your Professional Story</h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" id="name" placeholder=" " required name="full_name">
+                <label for="name">Full Name</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="email" id="email" 
+                {% if user.is_authenticated %}
+                value="{{user.email}}"
+                {% endif %}
+                
+                required name="professional_email">
+                <label for="email">Professional Email</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="tel" id="phone" placeholder=" " name="contact_number">
+                <label for="phone">Contact Number</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="profession" placeholder=" " name="professional_title">
+                <label for="profession">Professional Title</label>
+            </div>
+            
+            <div class="input-group">
+                <textarea id="summary" placeholder=" " name="professional_narrative"></textarea>
+                <label for="summary">Professional Narrative</label>
+            </div>
+            
+            <div class="input-group">
+                <select id="education" required name="education_level">
+                    <option value="">Select Education Level</option>
+                    <option value="high-school">High School</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">Doctoral Degree</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <h3 class="section-title">Work Experience</h3>
+                <div id="experiences-container"></div>
+                <button type="button" class="add-experience" onclick="addExperience()">
+                    <i class="fas fa-plus"></i> Add Work Experience
+                </button>
+            </div>
+
+            <div class="input-group">
+                <h3 class="section-title">Skills</h3>
+                <input type="text" id="skill-input" placeholder="Enter a skill" name="skill">
+                <div id="skills-container" class="skills-container"></div>
+                <button type="button" class="add-skill" onclick="addSkill()">
+                    <i class="fas fa-plus"></i> Add Skill
+                </button>
+            </div>
+            
+            <div class="input-group">
+                <input type="url" id="linkedin" placeholder=" " name="linkedin_profile">
+                <label for="linkedin">LinkedIn Profile</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="url" id="github" placeholder=" " name="github_portfolio">
+                <label for="github">GitHub/Portfolio Website</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Create My Story</button>
+            <button onclick="window.location.href='/logout'" class="submit-btn2">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        function addExperience() {
+            const container = document.getElementById('experiences-container');
+            const experienceItem = document.createElement('div');
+            experienceItem.className = 'experience-item';
+            experienceItem.innerHTML = `
+                <i class="fas fa-times remove-experience" onclick="this.parentElement.remove()"></i>
+                <div class="input-group">
+                    <input type="text" placeholder=" " required name='companies'>
+                    <label>Company Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder=" " required name='job_title'>
+                    <label>Job Title</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder=" " name='duration'>
+                    <label>Duration</label>
+                </div>
+                <div class="input-group">
+                    <textarea placeholder=" " name='job_descriptions'></textarea>
+                    <label>Job Description</label>
+                </div>
+            `;
+            container.appendChild(experienceItem);
+        }
+
+        function addSkill() {
+            const skillInput = document.getElementById('skill-input');
+            const skillsContainer = document.getElementById('skills-container');
+            
+            if (skillInput.value.trim() === '') return;
+
+            const skillTag = document.createElement('div');
+            skillTag.className = 'skill-tag';
+            skillTag.innerHTML = `
+                ${skillInput.value}
+                <i class="fas fa-times remove-skill" onclick="this.parentElement.remove()"></i>
+            `;
+            
+            skillsContainer.appendChild(skillTag);
+            skillInput.value = '';
+        }
+    </script>
+</body>
+</html>

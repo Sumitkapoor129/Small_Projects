@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify Your Email</title>
+    <script>
+        let timeLeft = 10; // Timer duration in seconds
+
+        function redirectAfterDelay() {
+            const timerElement = document.getElementById("timer");
+            const countdownInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timerElement.textContent = timeLeft; // Update the timer
+                    timeLeft--;
+                } else {
+                    clearInterval(countdownInterval); // Stop the timer
+                    window.location.href = "{% url 'Login:home' %}"; // Redirect after 10 seconds
+                }
+            }, 1000); // Update every 1 second
+        }
+
+        window.onload = redirectAfterDelay;
+    </script>
+</head>
+<body>
+    <h1>Verify Your Email</h1>
+    <p>Thank you for signing up! A verification email has been sent to your email address. Please check your inbox to verify your email before proceeding.</p>
+    <h2>Taking You to home page <span id="timer">10</span> seconds</h2>
+</body>
+</html>
+
