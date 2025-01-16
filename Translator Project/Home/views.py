@@ -12,13 +12,15 @@ from .utils import translate
 def homepage(request):
     
     if request.method=="POST":
+        text=request.POST.get("input")
+        lang=request.POST.get("lang")
+        T=translate(text,lang)
+        context={"Translation":T}
         if request.user.is_authenticated :
-            text=request.POST.get("input")
-            lang=request.POST.get("lang")
-            T=translate(text,lang)
-            context={"Translation":T}
+            
             return render(request,'home.html',context)
         else:
+            
             return redirect("Home:login")
         
     return render(request,'home.html')
